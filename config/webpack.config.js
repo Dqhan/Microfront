@@ -5,6 +5,7 @@ module.exports = {
     mode: "development",
     entry: './app.js',
     output: {
+        publicPath: '/build/',
         path: path.resolve(__dirname, './build/'),
         filename: 'demo.js'
     },
@@ -23,11 +24,11 @@ module.exports = {
             },
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './index.html'
-        })
-    ],
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         template: './index.html'
+    //     })
+    // ],
     resolve: {
         extensions: [".js", ".jsx", ".json", ".css"]
     },

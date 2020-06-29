@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom'
 import singleSpaReact from 'single-spa-react'
 import RootComponent from './root.component'
 
-if (process.env.NODE_ENV === 'development') {
-  // 开发环境直接渲染
-  ReactDOM.render(<RootComponent />, document.getElementById('root'))
-}
+// if (process.env.NODE_ENV === 'development') {
+//   // 开发环境直接渲染
+//   ReactDOM.render(<RootComponent />, document.getElementById('root'))
+// }
 
 //创建生命周期实例
 const reactLifecycles = singleSpaReact({
