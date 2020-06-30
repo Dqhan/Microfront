@@ -3,12 +3,18 @@
     /*
       tree shaking.
     */
-    ["env", {
-      "modules": false
-    }],
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
     // "env",
     "react",
     "stage-0"
   ],
+  "plugins": [
+    "transform-runtime"
+  ]
   //"modules": false
 }

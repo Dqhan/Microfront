@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   // entry: "./src/index.js",
   entry: {
-    "single-spa-config": "./config/single-spa-config.js",
+    "register": "./register.js",
   },
   output: {
     path: path.resolve(__dirname, "../build/"),
