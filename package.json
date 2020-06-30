@@ -37,6 +37,7 @@
     "react-router-dom": "^5.2.0",
     "single-spa": "^5.5.3",
     "single-spa-react": "^3.0.0",
+    "systemjs": "^6.3.3",
     "webpack": "^4.23.1",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.1.2",
