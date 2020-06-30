@@ -50,17 +50,17 @@ import * as singleSpa from "single-spa";
 // register();
 
 // 注册应用
-singleSpa.registerApplication(
-  "base",
-  () => System.import("../src/base/index.js"),
-  () => {
-    return true;
-  }
-);
+// singleSpa.registerApplication(
+//   "base",
+//   () => System.import("../src/base/index.js"),
+//   () => {
+//     return true;
+//   }
+// );
 
 singleSpa.registerApplication(
   "common",
-  () => System.import("../src/app-common/index.js"),
+  () => import("../src/app-common/index.js"),
   () => {
     return location.pathname === "/";
   }
@@ -68,7 +68,7 @@ singleSpa.registerApplication(
 
 singleSpa.registerApplication(
   "react",
-  () => System.import("../src/app-react/index.js"),
+  () => import("../src/app-react/index.js"),
   (location) => {
     return location.pathname.startsWith("/react-1");
   }
@@ -76,7 +76,7 @@ singleSpa.registerApplication(
 
 singleSpa.registerApplication(
   "react2",
-  () => System.import("../src/app2-react/index.js"),
+  () => import("../src/app2-react/index.js"),
   () => {
     return location.pathname.startsWith("/react-2");
   }
