@@ -6,17 +6,24 @@
     [
       "env",
       {
-        "modules": false
+        "targets": {
+          "browsers": [
+            "last 2 versions"
+          ]
+        }
       }
     ],
     // "env",
     "react",
     "stage-0"
   ],
-	"plugins": [
-		["transform-runtime", {
-			"polyfill": false,
-			"regenerator": true
-		}]
-	]
+  "plugins": [
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ]
 }

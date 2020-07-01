@@ -30,7 +30,7 @@ async function registerCommon() {
 }
 
 async function registerApp1() {
-  storeModule = await SystemJS.import("./app-react/store.js");
+  storeModule = await SystemJS.import("./app-react/dist/store.js");
 
   if (storeModule.storeInstance && globalEventDistributor) {
     customProps.store = storeModule.storeInstance;
@@ -39,7 +39,7 @@ async function registerApp1() {
 
   singleSpa.registerApplication(
     "react",
-    () => SystemJS.import("./app-react/index.js"),
+    () => SystemJS.import("./app-react/dist/index.js"),
     (location) => {
       return location.pathname.startsWith("/react-1");
     }
@@ -47,7 +47,7 @@ async function registerApp1() {
 }
 
 async function registerApp2() {
-  storeModule = await SystemJS.import("./app2-react/store.js");
+  storeModule = await SystemJS.import("./app2-react/dist/store.js");
 
   if (storeModule.storeInstance && globalEventDistributor) {
     customProps.store = storeModule.storeInstance;
@@ -56,7 +56,7 @@ async function registerApp2() {
 
   singleSpa.registerApplication(
     "react2",
-    () => SystemJS.import("./app2-react/index.js"),
+    () => SystemJS.import("./app2-react/dist/index.js"),
     () => {
       return location.pathname.startsWith("/react-2");
     }

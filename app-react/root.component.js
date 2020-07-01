@@ -1,4 +1,5 @@
-function App() {
+function App(props) {
+  var a = props;
   return <div>react app 1</div>;
 }
 

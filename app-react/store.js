@@ -5,7 +5,7 @@ const initialState = {
 };
 
 function reducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case 'INCREMENT':
             return {
                 count: state.count + 1

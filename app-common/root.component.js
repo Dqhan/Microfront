@@ -11,27 +11,29 @@ function Test() {
 }
 
 function App() {
+
+  var handleLink = function handleLink(type) {
+    switch (type) {
+      case "app1":
+        history.pushState(null, null, "/react-1");
+        break;
+      case "app2":
+        history.pushState(null, null, "/react-2");
+        break;
+    }
+  }
+
   return (
     <div>
       <h1>common app</h1>
       <ul>
         <li>
-          <a href="/react-1">react app1</a>
+          <a href="javascript:void(0);" onClick={() => handleLink('app1')} >react app1</a>
         </li>
         <li>
-          <a href="/react-2">react app2</a>
+          <a href="javascript:void(0);" onClick={() => handleLink('app2')} >react app2</a>
         </li>
       </ul>
-      {/* <BrowserRouter>
-        <ul>
-          <li>
-            <Link to="react-1"> React app</Link>
-          </li>
-          <li>
-            <Link to="/react-2"> React app2</Link>
-          </li>
-        </ul>
-      </BrowserRouter> */}
     </div>
   );
 }
