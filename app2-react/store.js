@@ -1,22 +1,35 @@
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 
-const initialState = {
-    count: 0
-};
+// const initialState = {
+//     count: 0
+// };
 
-function reducer(state = initialState, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                count: state.count + 1
-            };
-        case 'DECREMENT':
-            return {
-                count: state.count - 1
-            };
-        default:
-            return state;
-    }
+// function reducer(state = initialState, action) {
+//     switch (action.type) {
+//         case 'INCREMENT':
+//             return {
+//                 count: state.count + 1
+//             };
+//         case 'DECREMENT':
+//             return {
+//                 count: state.count - 1
+//             };
+//         default:
+//             return state;
+//     }
+// }
+
+// export const storeInstance = createStore(reducer);
+
+function Store() {
+  this.name = "app2-react";
+  this.state = {};
 }
 
-export const storeInstance = createStore(reducer);
+Store.prototype.register = function (name, target) {
+  this.state[`${this.name}-${name}`] = target;
+};
+
+var storeInstance = new Store();
+
+module.exports = storeInstance;

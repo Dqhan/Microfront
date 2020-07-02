@@ -6,11 +6,13 @@ import {
   HashRouter,
 } from "react-router-dom";
 
-function Test() {
-  return <div>test</div>;
-}
+function App(props) {
+  var glo = props.globalEventDistributor;
 
-function App() {
+  glo.dispatch("person", [
+    { name: "dqhan", age: 28 },
+    { name: "zhangsan", age: 60 },
+  ]);
 
   var handleLink = function handleLink(type) {
     switch (type) {
@@ -21,17 +23,21 @@ function App() {
         history.pushState(null, null, "/react-2");
         break;
     }
-  }
+  };
 
   return (
     <div>
-      <h1>common app</h1>
+      <h1>common app1</h1>
       <ul>
         <li>
-          <a href="javascript:void(0);" onClick={() => handleLink('app1')} >react app1</a>
+          <a href="javascript:void(0);" onClick={() => handleLink("app1")}>
+            react app1
+          </a>
         </li>
         <li>
-          <a href="javascript:void(0);" onClick={() => handleLink('app2')} >react app2</a>
+          <a href="javascript:void(0);" onClick={() => handleLink("app2")}>
+            react app2
+          </a>
         </li>
       </ul>
     </div>
