@@ -22,12 +22,12 @@
 // export const storeInstance = createStore(reducer);
 
 function Store() {
-  this.name = "app2-react";
+  this.prefixCls = "app2-react";
   this.state = {};
 }
 
 Store.prototype.register = function (name, target) {
-  this.state[`${this.name}-${name}`] = target;
+  this.state[`${this.prefixCls}-${name}`] = target;
 };
 
 var storeInstance = new Store();

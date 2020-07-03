@@ -5,15 +5,12 @@ import GlobalEventDistributor from "./globalEventDistributor";
 
 var globalEventDistributor = new GlobalEventDistributor();
 
-let storeModule = {},
-  customProps = { globalEventDistributor: globalEventDistributor };
 
 // 注册应用
 async function registerCommon() {
-  // storeModule = storeURL ? import("./app-common/store.js") : { storeInstance: null };
-
+  let storeModule = {},
+    customProps = { globalEventDistributor: globalEventDistributor };
   storeModule = await SystemJS.import("./app-common/dist/store.js");
-  // storeModule = await import("./app-common/store.js");
 
   if (storeModule && globalEventDistributor) {
     customProps.store = storeModule;
@@ -23,7 +20,6 @@ async function registerCommon() {
   singleSpa.registerApplication(
     "common",
     () => SystemJS.import("./app-common/dist/index.js"),
-    // () => import("./app-common/index.js"),
     () => {
       return location.pathname === "/";
     },
@@ -32,6 +28,8 @@ async function registerCommon() {
 }
 
 async function registerApp1() {
+  let storeModule = {},
+    customProps = { globalEventDistributor: globalEventDistributor };
   storeModule = await SystemJS.import("./app-react/dist/store.js");
 
   if (storeModule && globalEventDistributor) {
@@ -50,6 +48,8 @@ async function registerApp1() {
 }
 
 async function registerApp2() {
+  let storeModule = {},
+    customProps = { globalEventDistributor: globalEventDistributor };
   storeModule = await SystemJS.import("./app2-react/dist/store.js");
 
   if (storeModule && globalEventDistributor) {
