@@ -1,5 +1,5 @@
 function App(props) {
-  var a = props;
+  console.log(props.store);
   return <div>react app 1</div>;
 }
 

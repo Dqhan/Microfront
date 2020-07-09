@@ -1,18 +1,13 @@
-import {
-  Route,
-  Link,
-  Switch,
-  BrowserRouter,
-  HashRouter,
-} from "react-router-dom";
-
 function App(props) {
-  var glo = props.globalEventDistributor;
+  console.log(props);
+  var glo = props.globalInstance;
 
   glo.dispatch("person", [
     { name: "dqhan", age: 28 },
     { name: "zhangsan", age: 60 },
   ]);
+
+  // var { Provider, Consumer } = props.globalInstance;
 
   var handleLink = function handleLink(type) {
     switch (type) {
@@ -30,12 +25,12 @@ function App(props) {
       <h1>common app1</h1>
       <ul>
         <li>
-          <a href="javascript:void(0);" onClick={() => handleLink("app1")}>
+          <a onClick={() => handleLink("app1")}>
             react app1
           </a>
         </li>
         <li>
-          <a href="javascript:void(0);" onClick={() => handleLink("app2")}>
+          <a onClick={() => handleLink("app2")}>
             react app2
           </a>
         </li>

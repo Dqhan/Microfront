@@ -1,74 +1,34 @@
-// single-spa-config.js
 import * as singleSpa from "single-spa";
 
-import GlobalEventDistributor from "./globalEventDistributor";
+import GlobalInstance from "./globalInstance";
 
-var globalEventDistributor = new GlobalEventDistributor();
+import config from './config';
+
+var globalInstance = new GlobalInstance();
 
 
-// 注册应用
-async function registerCommon() {
+async function register(name, storeUrl, moduleUrl, path) {
   let storeModule = {},
-    customProps = { globalEventDistributor: globalEventDistributor };
-  storeModule = await SystemJS.import("./app-common/dist/store.js");
+    customProps = { globalInstance: globalInstance };
+  storeModule = await SystemJS.import(storeUrl);
 
-  if (storeModule && globalEventDistributor) {
+  if (storeModule && globalInstance) {
     customProps.store = storeModule;
-    globalEventDistributor.registerStore(storeModule);
+    globalInstance.registerStore(storeModule);
   }
 
   singleSpa.registerApplication(
-    "common",
-    () => SystemJS.import("./app-common/dist/index.js"),
+    name,
+    () => SystemJS.import(moduleUrl),
     () => {
-      return location.pathname === "/";
+      return location.pathname === path;
     },
     customProps
   );
 }
 
-async function registerApp1() {
-  let storeModule = {},
-    customProps = { globalEventDistributor: globalEventDistributor };
-  storeModule = await SystemJS.import("./app-react/dist/store.js");
+config.forEach(c => {
+  register(c.name, c.storeUrl, c.moduleUrl, c.path);
+})
 
-  if (storeModule && globalEventDistributor) {
-    customProps.store = storeModule;
-    globalEventDistributor.registerStore(storeModule);
-  }
-
-  singleSpa.registerApplication(
-    "react",
-    () => SystemJS.import("./app-react/dist/index.js"),
-    (location) => {
-      return location.pathname.startsWith("/react-1");
-    },
-    customProps
-  );
-}
-
-async function registerApp2() {
-  let storeModule = {},
-    customProps = { globalEventDistributor: globalEventDistributor };
-  storeModule = await SystemJS.import("./app2-react/dist/store.js");
-
-  if (storeModule && globalEventDistributor) {
-    customProps.store = storeModule;
-    globalEventDistributor.registerStore(storeModule);
-  }
-
-  singleSpa.registerApplication(
-    "react2",
-    () => SystemJS.import("./app2-react/dist/index.js"),
-    () => {
-      return location.pathname.startsWith("/react-2");
-    },
-    customProps
-  );
-}
-
-registerCommon();
-registerApp1();
-registerApp2();
-//singleSpa 启动
 singleSpa.start();
