@@ -4,6 +4,10 @@ import GlobalInstance from "./globalInstance";
 
 import config from './config';
 
+import { importEntry } from 'import-html-entry';
+import { createElement } from "react";
+import { template } from "babel-core";
+
 var globalInstance = new GlobalInstance();
 
 
@@ -19,12 +23,28 @@ async function register(name, storeUrl, moduleUrl, path) {
 
   singleSpa.registerApplication(
     name,
-    () => SystemJS.import(moduleUrl),
+    () => {
+      // return SystemJS.import(moduleUrl);
+      return loadApp(moduleUrl);
+    },
     () => {
       return location.pathname === path;
     },
     customProps
   );
+}
+async function loadApp(htmlPath) {
+  const { template, execScripts, assetPublicPath } = await importEntry(htmlPath);
+
+  const appContent = template;
+
+  let element = createElement(appContent);
+
+}
+
+function createElement(htmlElement) {
+  var container = document.createElement('div');
+  container.innerHTML = htmlElement;
 }
 
 config.forEach(c => {

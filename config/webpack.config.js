@@ -12,7 +12,7 @@ module.exports = {
     watchOptions: {
         aggregateTimeout: 800,
     },
-    devtool: "source-map",
+    devtool: 'cheap-module-source-map',
     module: {
         rules: [
             {

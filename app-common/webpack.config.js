@@ -16,7 +16,7 @@ module.exports = {
     libraryTarget: "amd",
     library: "common",
   },
-  devtool: "source-map",
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {

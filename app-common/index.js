@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import singleSpaReact from 'single-spa-react'
 import RootComponent from './root.component'
+import html from './dist/index.html';
 
 // if (process.env.NODE_ENV === 'development') {
 //   // 开发环境直接渲染
