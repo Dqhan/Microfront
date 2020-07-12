@@ -1,3 +1,5 @@
+require('./style.less');
+
 function App(props) {
   console.log(props);
   var glo = props.globalInstance;

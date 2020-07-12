@@ -8,13 +8,13 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./index.js",
-    store: "./store.js",
+    // store: "./store.js",
   },
   output: {
     path: path.resolve(__dirname, "./dist/"),
     filename: "[name].js",
-    libraryTarget: "amd",
-    library: "common",
+    libraryTarget: "umd",
+    library: "app-react",
   },
   devtool: "source-map",
   module: {
@@ -32,6 +32,9 @@ module.exports = {
       ReactDOM: "react-dom",
     }),
     new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    })
   ],
   resolve: {
     extensions: [".js", ".jsx", ".json", ".css", ".less"],

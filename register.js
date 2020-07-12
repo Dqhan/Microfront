@@ -5,8 +5,6 @@ import GlobalInstance from "./globalInstance";
 import config from './config';
 
 import { importEntry } from 'import-html-entry';
-import { createElement } from "react";
-import { template } from "babel-core";
 
 var globalInstance = new GlobalInstance();
 
@@ -14,11 +12,11 @@ var globalInstance = new GlobalInstance();
 async function register(name, storeUrl, moduleUrl, path) {
   let storeModule = {},
     customProps = { globalInstance: globalInstance };
-  storeModule = await SystemJS.import(storeUrl);
+  // storeModule = await SystemJS.import(storeUrl);
 
   if (storeModule && globalInstance) {
     customProps.store = storeModule;
-    globalInstance.registerStore(storeModule);
+    // globalInstance.registerStore(storeModule);
   }
 
   singleSpa.registerApplication(
@@ -36,15 +34,33 @@ async function register(name, storeUrl, moduleUrl, path) {
 async function loadApp(htmlPath) {
   const { template, execScripts, assetPublicPath } = await importEntry(htmlPath);
 
+  const global = window;
+
+
   const appContent = template;
 
   let element = createElement(appContent);
 
+  const execScriptsRes = await execScripts(global);
+
+  var root = document.getElementById('root');
+  root.appendChild(element);
+
+
+  var appInstanceId = 'test' + new Date().getTime();
+
+  return {
+    name: appInstanceId,
+    bootstrap: execScriptsRes.bootstrap,
+    mount: execScriptsRes.mount,
+    unmount: execScriptsRes.unmount,
+  }
 }
 
 function createElement(htmlElement) {
   var container = document.createElement('div');
   container.innerHTML = htmlElement;
+  return container;
 }
 
 config.forEach(c => {

@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "postcss-loader": "^3.0.0"
+  }
+}
